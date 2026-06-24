@@ -11,6 +11,7 @@ import { UserModule } from './modules/user/user.module';
 import { ProductModule } from './modules/product/product.module';
 import { BrandModule } from './modules/brand/brand.module';
 import { CacheModule } from '@nestjs/cache-manager';
+import { FileUploadModule } from './shared/file-upload/file-upload.module';
 
 @Module({
   imports: [
@@ -32,6 +33,7 @@ import { CacheModule } from '@nestjs/cache-manager';
     UserModule,
     ProductModule,
     BrandModule,
+    FileUploadModule,
   ],
 
   controllers: [],

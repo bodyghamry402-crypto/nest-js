@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post, UseGuards } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, UseGuards, UsePipes, ValidationPipe } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { RegisterDto } from './dto/register.dto';
 import { LoginDto } from './dto/login.dto';
@@ -8,7 +8,6 @@ import { User } from 'src/common/decorators/user.decorator';
 import { Action } from 'src/common/decorators/action.decorator';
 import { RBACGuard } from 'src/common/guards/rbac.guard';
 
-
 @UseGuards(AuthGuard)
 @Controller('auth')
 export class AuthController {
@@ -17,10 +16,11 @@ export class AuthController {
   // auth/register
 
   @Post('register')
+  @IsPublic()
   async register(@Body() registerDto: RegisterDto) {
+    console.log(1);
     const createdCustomer = await this.authService.register(registerDto);
-
-    return {
+     return {
       message: 'user created successfully',
       success: true,
       data: { createdCustomer },
